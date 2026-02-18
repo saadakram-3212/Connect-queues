@@ -1,7 +1,6 @@
 connect_queues = [
   {
-    create_instance = true
-    instance_id     = null
+    instance_id     = "b8a0bb47-005c-4c4a-9c54-1b1937ed2613"
 
     hours_of_operations_tags = {
       Environment = "prod"
@@ -16,7 +15,7 @@ connect_queues = [
     hours_of_operations = {
       business_hours = {
         time_zone   = "US/Eastern"
-        description = "Standard business hours"
+        description = "Standard business hours-test"
         config = [
           {
             day        = "MONDAY"
@@ -48,19 +47,19 @@ connect_queues = [
     }
 
     queues = {
-      support_queue = {
+      support_queue-3 = {                                       #name of the queue will be support_queue-3
         description           = "Customer support queue"
-        hours_of_operation_id = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+        hours_of_operation_name = "business_hours"
         max_contacts          = 10
         status                = "ENABLED"
-        quick_connect_ids     = []
+       # quick_connect_ids     = []
         tags = {
           Team = "support"
         }
         outbound_caller_config = {
           outbound_caller_id_name      = "Support"
-          outbound_caller_id_number_id = null
-          outbound_flow_id             = null
+         # outbound_caller_id_number_id = null
+         # outbound_flow_id             = null
         }
       }
     }

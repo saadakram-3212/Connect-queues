@@ -1,7 +1,4 @@
 
-locals {
-  instance_id = var.create_instance ? aws_connect_instance.this[0].id : var.instance_id
-}
 
 ################################################################################
 # Hours of Operation
@@ -28,7 +25,7 @@ resource "aws_connect_hours_of_operation" "this" {
     }
   }
 
-  instance_id = local.instance_id
+  instance_id = var.instance_id
   name        = each.key
   time_zone   = each.value.time_zone
 
@@ -38,7 +35,6 @@ resource "aws_connect_hours_of_operation" "this" {
   # tags
   tags = merge(
     { Name = each.key },
-    var.tags,
     var.hours_of_operations_tags,
     try(each.value.tags, {})
   )
@@ -51,8 +47,8 @@ resource "aws_connect_queue" "this" {
   for_each = var.queues
 
   # required
-  hours_of_operation_id = aws
-  instance_id           = local.instance_id
+  hours_of_operation_id = aws_connect_hours_of_operation.this[each.value.hours_of_operation_name].hours_of_operation_id
+  instance_id           = var.instance_id
   name                  = each.key
 
   # optional
@@ -75,17 +71,9 @@ resource "aws_connect_queue" "this" {
   # tags
   tags = merge(
     { Name = each.key },
-    var.tags,
     var.queue_tags,
     try(each.value.tags, {})
   )
+  depends_on = [ aws_connect_hours_of_operation.this ]
 }
 
-################################################################################
-# Tags
-################################################################################
-variable "tags" {
-  type        = map(string)
-  default     = {}
-  description = "A map of tags to add to all resources."
-}

@@ -7,7 +7,6 @@ variable "aws_region" {
 variable "connect_queues" {
   description = "A consolidated configuration object for Amazon Connect queue-related resources."
   type = list(object({
-    create_instance          = optional(bool, true)
     instance_id              = optional(string, null)
     hours_of_operations_tags = optional(map(string), {})
     queue_tags               = optional(map(string), {})

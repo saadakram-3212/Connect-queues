@@ -39,12 +39,6 @@ variable "hours_of_operations_tags" {
 }
 
 
-variable "create_instance" {
-  type        = bool
-  default     = true
-  description = "Controls if the aws_connect_instance resource should be created. Defaults to true."
-}
-
 variable "instance_id" {
   type        = string
   default     = null
@@ -65,7 +59,7 @@ Example/available options:
 {
   <queue_name> = {
     description            = optional(string)
-    hours_of_operation_id  = string
+    hours_of_operation_name  = string
     max_contacts           = optional(number)
     outbound_caller_config = optional({
       outbound_caller_id_name      = optional(string)
