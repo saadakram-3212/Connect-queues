@@ -1,8 +1,6 @@
 
 
-################################################################################
-# Hours of Operation
-################################################################################
+## Hours of Operation
 resource "aws_connect_hours_of_operation" "this" {
   for_each = var.hours_of_operations
 
@@ -40,9 +38,7 @@ resource "aws_connect_hours_of_operation" "this" {
   )
 }
 
-################################################################################
-# Queue
-################################################################################
+## Queues
 resource "aws_connect_queue" "this" {
   for_each = var.queues
 
