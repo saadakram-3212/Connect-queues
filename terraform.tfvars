@@ -53,9 +53,19 @@ connect_queues = [
         max_contacts          = 10
         status                = "ENABLED"
        # quick_connect_ids     = []
-        tags = {
-          Team = "support"
+
+        outbound_caller_config = {
+          outbound_caller_id_name      = "Support"
+         # outbound_caller_id_number_id = null
+         # outbound_flow_id             = null
         }
+      }
+      support_queue-4 = {                                       #name of the queue will be support_queue-4
+        description           = "Customer support queue"
+        hours_of_operation_name = "business_hours"
+        max_contacts          = 10
+        status                = "ENABLED"
+       # quick_connect_ids     = []
         outbound_caller_config = {
           outbound_caller_id_name      = "Support"
          # outbound_caller_id_number_id = null
