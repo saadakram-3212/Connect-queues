@@ -70,3 +70,28 @@ module "connect_security_profile" {
     }
   }
 }
+
+
+module "connect_users" {
+  for_each = { for u in var.users : u.name => u }
+  source   = "./modules/users"
+
+  instance_id = each.value.instance_id
+  user_tags   = each.value.user_tags
+
+  users = {
+    (each.value.name) = {
+      directory_user_id  = each.value.directory_user_id
+      hierarchy_group_id = each.value.hierarchy_group_id
+      identity_info      = each.value.identity_info
+      password           = each.value.password
+      phone_config       = each.value.phone_config
+      routing_profile_id = local.all_routing_profile_ids[each.value.routing_profile_name]
+      security_profile_ids = [
+        for sp_name in each.value.security_profile_names :
+        local.all_security_profile_ids[sp_name]
+      ]
+      tags = each.value.tags
+    }
+  }
+}

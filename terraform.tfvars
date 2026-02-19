@@ -135,3 +135,55 @@ security_profiles = [
     }
   }
 ]
+
+
+users = [
+  {
+    name        = "john.doe"
+    instance_id = "b8a0bb47-005c-4c4a-9c54-1b1937ed2613"
+    user_tags = {
+      Environment = "dev"
+      ManagedBy   = "terraform"
+    }
+    identity_info = {
+      email      = "john.doe@example.com"
+      first_name = "John"
+      last_name  = "Doe"
+    }
+    password = ""
+    phone_config = {
+      phone_type                    = "SOFT_PHONE"
+      after_contact_work_time_limit = 30
+      auto_accept                   = false
+    }
+    routing_profile_name   = "support-3-routing-profile"
+    security_profile_names = ["agent-security-profile-test"]
+    tags = {
+      Team = "support"
+    }
+  },
+  {
+    name        = "jane.admin"
+    instance_id = "b8a0bb47-005c-4c4a-9c54-1b1937ed2613"
+    user_tags = {
+      Environment = "dev"
+      ManagedBy   = "terraform"
+    }
+    identity_info = {
+      email      = "jane.admin@example.com"
+      first_name = "Jane"
+      last_name  = "Admin"
+    }
+    password = ""
+    phone_config = {
+      phone_type        = "DESK_PHONE"
+      desk_phone_number = "+12345678901"
+      auto_accept       = true
+    }
+    routing_profile_name   = "support-3-routing-profile"
+    security_profile_names = ["admin-security-profile-test", "agent-security-profile-test"]
+    tags = {
+      Team = "platform"
+    }
+  }
+]

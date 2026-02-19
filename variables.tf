@@ -53,3 +53,31 @@ variable "security_profiles" {
   }))
   default = []
 }
+
+
+variable "users" {
+  description = "List of Amazon Connect user configurations."
+  type = list(object({
+    name                = string
+    instance_id         = string
+    user_tags           = optional(map(string), {})
+    directory_user_id   = optional(string, null)
+    hierarchy_group_id  = optional(string, null)
+    identity_info = optional(object({
+      email      = optional(string, null)
+      first_name = optional(string, null)
+      last_name  = optional(string, null)
+    }), null)
+    password = optional(string, null)
+    phone_config = object({
+      phone_type                    = string
+      after_contact_work_time_limit = optional(number, 0)
+      auto_accept                   = optional(bool, false)
+      desk_phone_number             = optional(string, null)
+    })
+    routing_profile_name  = string
+    security_profile_names = list(string)
+    tags                  = optional(map(string), {})
+  }))
+  default = []
+}
