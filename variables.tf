@@ -35,7 +35,6 @@ variable "routing_profiles" {
       priority = number
       queue_name = string
     })), [])
-    tags = optional(map(string), {})
   }))
   default = []
 }
@@ -49,7 +48,6 @@ variable "security_profiles" {
     security_profile_tags = optional(map(string), {})
     description           = optional(string, null)
     permissions           = optional(list(string), [])
-    tags                  = optional(map(string), {})
   }))
   default = []
 }
@@ -77,7 +75,6 @@ variable "users" {
     })
     routing_profile_name  = string
     security_profile_names = list(string)
-    tags                  = optional(map(string), {})
   }))
   default = []
 }

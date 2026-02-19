@@ -31,8 +31,6 @@ resource "aws_connect_routing_profile" "this" {
 
   # tags
   tags = merge(
-    { Name = each.key },
     var.routing_profile_tags,
-    try(each.value.tags, {})
   )
 }

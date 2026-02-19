@@ -35,8 +35,6 @@ resource "aws_connect_user" "this" {
 
   # tags
   tags = merge(
-    { Name = each.key },
     var.user_tags,
-    try(each.value.tags, {})
   )
 }

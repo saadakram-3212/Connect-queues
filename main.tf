@@ -41,7 +41,6 @@ module "connect_routing_profile" {
       default_outbound_queue_id = local.all_queue_ids[each.value.default_outbound_queue_name]
       description               = each.value.description
       media_concurrencies       = each.value.media_concurrencies
-      tags                      = each.value.tags
       queue_configs = [
         for qc in each.value.queue_configs : {
           channel  = qc.channel
@@ -66,7 +65,6 @@ module "connect_security_profile" {
     (each.value.name) = {
       description = each.value.description
       permissions = each.value.permissions
-      tags        = each.value.tags
     }
   }
 }
@@ -91,7 +89,6 @@ module "connect_users" {
         for sp_name in each.value.security_profile_names :
         local.all_security_profile_ids[sp_name]
       ]
-      tags = each.value.tags
     }
   }
 }

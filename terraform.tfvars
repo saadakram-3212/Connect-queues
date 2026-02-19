@@ -97,7 +97,6 @@ routing_profiles = [
         queue_name = "support_queue-3"
       }
     ]
-    tags = { Team = "support" }
   }
 ]
 
@@ -115,9 +114,6 @@ security_profiles = [
       "BasicAgentAccess",
       "OutboundCallAccess"
     ]
-    tags = {
-      Team = "platform"
-    }
   },
   {
     name        = "agent-security-profile-test"
@@ -130,9 +126,6 @@ security_profiles = [
     permissions = [
       "BasicAgentAccess"
     ]
-    tags = {
-      Team = "support"
-    }
   }
 ]
 
@@ -158,9 +151,6 @@ users = [
     }
     routing_profile_name   = "support-3-routing-profile"
     security_profile_names = ["agent-security-profile-test"]
-    tags = {
-      Team = "support"
-    }
   },
   {
     name        = "jane.admin"
@@ -182,8 +172,5 @@ users = [
     }
     routing_profile_name   = "support-3-routing-profile"
     security_profile_names = ["admin-security-profile-test", "agent-security-profile-test"]
-    tags = {
-      Team = "platform"
-    }
   }
 ]

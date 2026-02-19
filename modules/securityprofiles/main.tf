@@ -11,8 +11,6 @@ resource "aws_connect_security_profile" "this" {
 
   # tags
   tags = merge(
-    { Name = each.key },
     var.security_profile_tags,
-    try(each.value.tags, {})
   )
 }
