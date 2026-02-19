@@ -15,3 +15,27 @@ variable "connect_queues" {
   }))
   default = []
 }
+
+
+variable "routing_profiles" {
+  description = "List of routing profile configurations."
+  type = list(object({
+    name                      = string
+    instance_id               = string
+    routing_profile_tags      = optional(map(string), {})
+    default_outbound_queue_name = string
+    description               = string
+    media_concurrencies = list(object({
+      channel     = string
+      concurrency = number
+    }))
+    queue_configs = optional(list(object({
+      channel  = string
+      delay    = number
+      priority = number
+      queue_name = string
+    })), [])
+    tags = optional(map(string), {})
+  }))
+  default = []
+}

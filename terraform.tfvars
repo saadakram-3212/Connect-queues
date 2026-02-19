@@ -75,3 +75,28 @@ connect_queues = [
     }
   }
 ]
+
+
+# terraform.tfvars
+routing_profiles = [
+  {
+    name                        = "support-3-routing-profile"
+    instance_id                 = "b8a0bb47-005c-4c4a-9c54-1b1937ed2613"
+    routing_profile_tags        = { Environment = "dev" }
+    default_outbound_queue_name = "support_queue-3"
+    description                 = "Default routing profile for general agents"
+    media_concurrencies = [
+      { channel = "VOICE", concurrency = 1 },
+      { channel = "CHAT",  concurrency = 2 }
+    ]
+    queue_configs = [
+      {
+        channel    = "VOICE"
+        delay      = 0
+        priority   = 1
+        queue_name = "support_queue-3"
+      }
+    ]
+    tags = { Team = "support" }
+  }
+]
