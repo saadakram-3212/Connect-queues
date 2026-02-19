@@ -6,6 +6,14 @@ locals {
     all_queue_ids = merge([
     for k, m in module.connect_queues : m.queue_ids
   ]...)
+
+  all_routing_profile_ids = merge([
+    for k, m in module.connect_routing_profile : m.routing_profile_ids
+  ]...)
+
+  all_security_profile_ids = merge([
+    for k, m in module.connect_security_profile : m.security_profile_ids
+  ]...)
 }
 
 module "connect_queues" {
