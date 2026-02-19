@@ -1,6 +1,5 @@
 variable "routing_profiles" {
   type        = any
-  default     = {}
   description = <<-EOF
 A map of Amazon Connect Routing Profile.
 
@@ -35,12 +34,10 @@ Example/available options:
 
 variable "routing_profile_tags" {
   type        = map(string)
-  default     = {}
   description = "Additional tags to add to all Routing Profile resources."
 }
 
 variable "instance_id" {
   type        = string
-  default     = null
   description = "If create_instance is set to false, you may still create other resources and pass in an instance ID that was created outside this module. Ignored if create_instance is true."
 }

@@ -35,12 +35,10 @@ Example/available options:
 
 variable "instance_id" {
   type        = string
-  default     = null
   description = "If create_instance is set to false, you may still create other resources and pass in an instance ID that was created outside this module. Ignored if create_instance is true."
 }
 
 variable "user_tags" {
   type        = map(string)
-  default     = {}
   description = "Additional tags to add to all User resources."
 }

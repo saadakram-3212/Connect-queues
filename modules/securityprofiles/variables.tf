@@ -1,6 +1,5 @@
 variable "instance_id" {
   type        = string
-  default     = null
   description = "If create_instance is set to false, you may still create other resources and pass in an instance ID that was created outside this module. Ignored if create_instance is true."
 }
 
@@ -27,6 +26,5 @@ Example/available options:
 
 variable "security_profile_tags" {
   type        = map(string)
-  default     = {}
   description = "Additional tags to add to all Security Profile resources."
 }
