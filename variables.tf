@@ -39,3 +39,17 @@ variable "routing_profiles" {
   }))
   default = []
 }
+
+
+variable "security_profiles" {
+  description = "List of security profile configurations."
+  type = list(object({
+    name                  = string
+    instance_id           = string
+    security_profile_tags = optional(map(string), {})
+    description           = optional(string, null)
+    permissions           = optional(list(string), [])
+    tags                  = optional(map(string), {})
+  }))
+  default = []
+}

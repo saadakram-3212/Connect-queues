@@ -100,3 +100,38 @@ routing_profiles = [
     tags = { Team = "support" }
   }
 ]
+
+
+security_profiles = [
+  {
+    name        = "admin-security-profile-test"
+    instance_id = "b8a0bb47-005c-4c4a-9c54-1b1937ed2613"
+    security_profile_tags = {
+      Environment = "dev"
+      ManagedBy   = "terraform"
+    }
+    description = "Admin security profile with full permissions"
+    permissions = [
+      "BasicAgentAccess",
+      "OutboundCallAccess"
+    ]
+    tags = {
+      Team = "platform"
+    }
+  },
+  {
+    name        = "agent-security-profile-test"
+    instance_id = "b8a0bb47-005c-4c4a-9c54-1b1937ed2613"
+    security_profile_tags = {
+      Environment = "dev"
+      ManagedBy   = "terraform"
+    }
+    description = "Standard agent security profile"
+    permissions = [
+      "BasicAgentAccess"
+    ]
+    tags = {
+      Team = "support"
+    }
+  }
+]

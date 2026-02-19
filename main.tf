@@ -45,3 +45,20 @@ module "connect_routing_profile" {
     }
   }
 }
+
+
+module "connect_security_profile" {
+  for_each = { for sp in var.security_profiles : sp.name => sp }
+  source   = "./modules/securityprofiles"
+
+  instance_id           = each.value.instance_id
+  security_profile_tags = each.value.security_profile_tags
+
+  security_profiles = {
+    (each.value.name) = {
+      description = each.value.description
+      permissions = each.value.permissions
+      tags        = each.value.tags
+    }
+  }
+}
