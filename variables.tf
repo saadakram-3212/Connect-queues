@@ -78,3 +78,29 @@ variable "users" {
   }))
   default = []
 }
+
+variable "quick_connects" {
+  description = "List of Amazon Connect Quick Connect configurations."
+  type = list(object({
+    name               = string
+    instance_id        = string
+    quick_connect_tags = optional(map(string), {})
+    description        = optional(string, null)
+    quick_connect_config = object({
+      quick_connect_type = string
+      phone_config = optional(object({
+        phone_number = string
+      }), null)
+      queue_config = optional(object({
+        contact_flow_id = string
+        queue_name      = string
+      }), null)
+      user_config = optional(object({
+        contact_flow_id = string
+        user_name       = string
+      }), null)
+    })
+    tags = optional(map(string), {})
+  }))
+  default = []
+}

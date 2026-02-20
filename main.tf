@@ -14,6 +14,10 @@ locals {
   all_security_profile_ids = merge([
     for k, m in module.connect_security_profile : m.security_profile_ids
   ]...)
+
+    all_user_ids = {
+    for k, m in module.connect_users : k => m.user_ids[k]
+  }
 }
 
 module "connect_queues" {
@@ -89,6 +93,39 @@ module "connect_users" {
         for sp_name in each.value.security_profile_names :
         local.all_security_profile_ids[sp_name]
       ]
+    }
+  }
+}
+
+
+module "connect_quick_connect" {
+  for_each = { for qc in var.quick_connects : qc.name => qc }
+  source   = "./modules/quick_connect"
+
+  instance_id        = each.value.instance_id
+  quick_connect_tags = each.value.quick_connect_tags
+
+  quick_connects = {
+    (each.value.name) = {
+      description = each.value.description
+      quick_connect_config = {
+        quick_connect_type = each.value.quick_connect_config.quick_connect_type
+
+        phone_config = each.value.quick_connect_config.phone_config != null ? {
+          phone_number = each.value.quick_connect_config.phone_config.phone_number
+        } : null
+
+        queue_config = each.value.quick_connect_config.queue_config != null ? {
+          contact_flow_id = each.value.quick_connect_config.queue_config.contact_flow_id
+          queue_id        = local.all_queue_ids[each.value.quick_connect_config.queue_config.queue_name]
+        } : null
+
+        user_config = each.value.quick_connect_config.user_config != null ? {
+          contact_flow_id = each.value.quick_connect_config.user_config.contact_flow_id
+          user_id         = local.all_user_ids[each.value.quick_connect_config.user_config.user_name]
+        } : null
+      }
+      tags = each.value.tags
     }
   }
 }

@@ -576,7 +576,7 @@ users = [
       first_name = "John"
       last_name  = "Doe"
     }
-    password = "" # eg Test@1234! if no password, remove this field
+    password = "Test@1234!" # eg Test@1234! if no password, remove this field
     phone_config = {
       phone_type                    = "SOFT_PHONE"
       after_contact_work_time_limit = 30
@@ -597,7 +597,7 @@ users = [
       first_name = "Jane"
       last_name  = "Admin"
     }
-    password = "" # eg Test@1234! if no password, remove this field
+    password = "Test@1234!" # eg Test@1234! if no password, remove this field
     phone_config = {
       phone_type        = "DESK_PHONE"
       desk_phone_number = "+12345678901"
