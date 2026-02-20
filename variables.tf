@@ -89,7 +89,7 @@ variable "quick_connects" {
     quick_connect_config = object({
       quick_connect_type = string
       phone_config = optional(object({
-        phone_number = string
+            phone_number_name = string
       }), null)
       queue_config = optional(object({
         contact_flow_id = string
@@ -110,6 +110,7 @@ variable "phone_numbers" {
   description = "List of Amazon Connect phone number configurations."
   type = list(object({
     instance_id       = string
+    name              = string
     phone_number_tags = optional(map(string), {})
     country_code      = optional(string, null)
     type              = optional(string, null)
@@ -120,3 +121,4 @@ variable "phone_numbers" {
   }))
   default = []
 }
+

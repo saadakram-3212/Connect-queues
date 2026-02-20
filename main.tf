@@ -18,6 +18,14 @@ locals {
     all_user_ids = {
     for k, m in module.connect_users : k => m.user_ids[k]
   }
+
+    all_phone_number_ids = merge([
+    for k, m in module.connect_phone_numbers : m.phone_number_ids
+  ]...)
+
+  all_phone_number_values = merge([
+    for k, m in module.connect_phone_numbers : m.phone_number_values
+  ]...)
 }
 
 module "connect_queues" {
@@ -98,37 +106,39 @@ module "connect_users" {
 }
 
 
-# module "connect_quick_connect" {
-#   for_each = { for qc in var.quick_connects : qc.name => qc }
-#   source   = "./modules/quick_connect"
+module "connect_quick_connect" {
+  for_each = { for qc in var.quick_connects : qc.name => qc }
+  source   = "./modules/quick_connect"
 
-#   instance_id        = each.value.instance_id
-#   quick_connect_tags = each.value.quick_connect_tags
+  instance_id        = each.value.instance_id
+  quick_connect_tags = each.value.quick_connect_tags
 
-#   quick_connects = {
-#     (each.value.name) = {
-#       description = each.value.description
-#       quick_connect_config = {
-#         quick_connect_type = each.value.quick_connect_config.quick_connect_type
+  quick_connects = {
+    (each.value.name) = {
+      description = each.value.description
+      quick_connect_config = {
+        quick_connect_type = each.value.quick_connect_config.quick_connect_type
 
-#         phone_config = each.value.quick_connect_config.phone_config != null ? {
-#           phone_number = each.value.quick_connect_config.phone_config.phone_number
-#         } : null
+        # Only include phone_config if it's not null and has required values
+        phone_config = each.value.quick_connect_config.phone_config != null ? {
+          phone_number = local.all_phone_number_values[each.value.quick_connect_config.phone_config.phone_number_name]
+        } : null
 
-#         queue_config = each.value.quick_connect_config.queue_config != null ? {
-#           contact_flow_id = each.value.quick_connect_config.queue_config.contact_flow_id
-#           queue_id        = local.all_queue_ids[each.value.quick_connect_config.queue_config.queue_name]
-#         } : null
+        # Only include queue_config if it's not null and has required values
+        queue_config = each.value.quick_connect_config.queue_config != null ? {
+          contact_flow_id = each.value.quick_connect_config.queue_config.contact_flow_id
+          queue_id        = local.all_queue_ids[each.value.quick_connect_config.queue_config.queue_name]
+        } : null
 
-#         user_config = each.value.quick_connect_config.user_config != null ? {
-#           contact_flow_id = each.value.quick_connect_config.user_config.contact_flow_id
-#           user_id         = local.all_user_ids[each.value.quick_connect_config.user_config.user_name]
-#         } : null
-#       }
-#       tags = each.value.tags
-#     }
-#   }
-# }
+        # Only include user_config if it's not null and has required values
+        user_config = each.value.quick_connect_config.user_config != null ? {
+          contact_flow_id = each.value.quick_connect_config.user_config.contact_flow_id
+          user_id         = local.all_user_ids[each.value.quick_connect_config.user_config.user_name]
+        } : null
+      }
+    }
+  }
+}
 
 module "connect_phone_numbers" {
   for_each = {
@@ -142,6 +152,7 @@ module "connect_phone_numbers" {
 
   phone_numbers = [
     {
+      name         = each.value.name
       country_code = each.value.country_code
       type         = each.value.type
       description  = each.value.description

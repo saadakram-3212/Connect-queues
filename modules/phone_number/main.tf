@@ -1,5 +1,5 @@
 resource "aws_connect_phone_number" "this" {
-  for_each = { for idx, pn in var.phone_numbers : idx => pn }
+    for_each = { for pn in var.phone_numbers : pn.name => pn }
 
   target_arn   = var.instance_id
   country_code = each.value.country_code
