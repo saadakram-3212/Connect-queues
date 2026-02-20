@@ -607,3 +607,19 @@ users = [
     security_profile_names = ["agent-2"]
   }
 ]
+
+
+phone_numbers = [
+  {
+    instance_id  = "arn:aws:connect:us-east-1:387867038403:instance/b8a0bb47-005c-4c4a-9c54-1b1937ed2613"
+    phone_number_tags = {
+      Environment = "dev"
+      ManagedBy   = "terraform"
+    }
+    country_code = "US"
+    type         = "DID"
+    description  = "Main support line"
+    #prefix       = "+1206"
+    region       = "us-east-1"
+  }
+]
