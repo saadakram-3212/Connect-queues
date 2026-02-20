@@ -104,3 +104,19 @@ variable "quick_connects" {
   }))
   default = []
 }
+
+
+variable "phone_numbers" {
+  description = "List of Amazon Connect phone number configurations."
+  type = list(object({
+    instance_id       = string
+    phone_number_tags = optional(map(string), {})
+    country_code      = optional(string, null)
+    type              = optional(string, null)
+    description       = optional(string, null)
+    prefix            = optional(string, null)
+    region            = optional(string, null)
+    tags              = optional(map(string), {})
+  }))
+  default = []
+}

@@ -129,3 +129,24 @@ module "connect_quick_connect" {
     }
   }
 }
+
+module "connect_phone_numbers" {
+  for_each = {
+    for pn in var.phone_numbers :
+    "${pn.country_code}-${pn.type}-${coalesce(pn.prefix, "any")}" => pn
+  }
+  source = "./modules/phone_number"
+
+  instance_id       = each.value.instance_id
+  phone_number_tags = each.value.phone_number_tags
+
+  phone_numbers = [
+    {
+      country_code = each.value.country_code
+      type         = each.value.type
+      description  = each.value.description
+      prefix       = each.value.prefix
+      region       = each.value.region
+    }
+  ]
+}
