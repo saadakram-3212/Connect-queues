@@ -1,0 +1,103 @@
+{
+  "Version": "2019-10-30",
+  "StartAction": "a777d9a1-1e73-4a00-870d-814f744954e4",
+  "Metadata": {
+    "entryPointPosition": {
+      "x": 40,
+      "y": 40
+    },
+    "ActionMetadata": {
+      "5691f23a-3255-4642-b573-cb7589e24040": {
+        "position": {
+          "x": 1031.2,
+          "y": 99.2
+        }
+      },
+      "a777d9a1-1e73-4a00-870d-814f744954e4": {
+        "position": {
+          "x": 302.4,
+          "y": 82.4
+        },
+        "parameters": {
+          "LambdaFunctionARN": {
+            "displayName": "getDepartureLocations_Connect"
+          }
+        },
+        "dynamicMetadata": {}
+      },
+      "3369c8be-0117-4399-ab61-8bfc4ec580c3": {
+        "position": {
+          "x": 700,
+          "y": 77.6
+        }
+      }
+    },
+    "Annotations": [],
+    "name": "DepartureLocations",
+    "description": "",
+    "status": "published",
+    "settings": {},
+    "hash": {}
+  },
+  "Actions": [
+    {
+      "Parameters": {},
+      "Identifier": "5691f23a-3255-4642-b573-cb7589e24040",
+      "Type": "EndFlowModuleExecution",
+      "Transitions": {}
+    },
+    {
+      "Parameters": {
+        "LambdaFunctionARN": "arn:aws:lambda:us-east-1:387867038403:function:getDepartureLocations_Connect",
+        "InvocationTimeLimitSeconds": "3",
+        "InvocationType": "SYNCHRONOUS",
+        "ResponseValidation": {
+          "ResponseType": "STRING_MAP"
+        }
+      },
+      "Identifier": "a777d9a1-1e73-4a00-870d-814f744954e4",
+      "Type": "InvokeLambdaFunction",
+      "Transitions": {
+        "NextAction": "3369c8be-0117-4399-ab61-8bfc4ec580c3",
+        "Errors": [
+          {
+            "NextAction": "3369c8be-0117-4399-ab61-8bfc4ec580c3",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "Text": "We have departures from: $.External.cities\n\nTotal locations: $.External.count"
+      },
+      "Identifier": "3369c8be-0117-4399-ab61-8bfc4ec580c3",
+      "Type": "MessageParticipant",
+      "Transitions": {
+        "NextAction": "5691f23a-3255-4642-b573-cb7589e24040",
+        "Errors": [
+          {
+            "NextAction": "5691f23a-3255-4642-b573-cb7589e24040",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    }
+  ],
+  "Settings": {
+    "InputParameters": [],
+    "OutputParameters": [],
+    "Transitions": [
+      {
+        "DisplayName": "Success",
+        "ReferenceName": "Success",
+        "Description": ""
+      },
+      {
+        "DisplayName": "Error",
+        "ReferenceName": "Error",
+        "Description": ""
+      }
+    ]
+  }
+}

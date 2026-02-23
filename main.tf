@@ -176,3 +176,20 @@ module "connect_contact_flows" {
     }
   }
 }
+
+module "connect_contact_flow_modules" {
+  for_each = { for cfm in var.contact_flow_modules : cfm.name => cfm }
+  source   = "./modules/connect_modules"
+
+  instance_id              = each.value.instance_id
+  contact_flow_module_tags = each.value.contact_flow_module_tags
+
+  contact_flow_modules = {
+    (each.value.name) = {
+      filename     = each.value.filename
+      content_hash = filemd5(each.value.filename)
+      description  = each.value.description
+      tags         = each.value.tags
+    }
+  }
+}

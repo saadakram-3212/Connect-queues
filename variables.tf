@@ -135,3 +135,17 @@ variable "contact_flows" {
   }))
   default = []
 }
+
+
+variable "contact_flow_modules" {
+  description = "List of Amazon Connect Contact Flow Module configurations."
+  type = list(object({
+    name                    = string
+    instance_id             = string
+    contact_flow_module_tags = optional(map(string), {})
+    description             = optional(string, null)
+    filename                = string
+    tags                    = optional(map(string), {})
+  }))
+  default = []
+}

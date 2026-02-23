@@ -654,3 +654,20 @@ contact_flows = [
     }
   }
 ]
+
+
+contact_flow_modules = [
+  {
+    name                     = "test-module-from-terraform"
+    instance_id              = "b8a0bb47-005c-4c4a-9c54-1b1937ed2613"
+    contact_flow_module_tags = {
+      Environment = "dev"
+      ManagedBy   = "terraform"
+    }
+    description = "Test module created from Terraform"
+    filename    = "./flow_modules/test_module.json"
+    tags = {
+      Team = "support"
+    }
+  }
+]
