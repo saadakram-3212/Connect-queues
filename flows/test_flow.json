@@ -1,0 +1,54 @@
+{
+  "Version": "2019-10-30",
+  "StartAction": "94975bda-a999-4934-9488-26877854d444",
+  "Metadata": {
+    "entryPointPosition": {
+      "x": 40,
+      "y": 40
+    },
+    "ActionMetadata": {
+      "6ab6b2e7-a051-4418-b6aa-b1cf7fc70be3": {
+        "position": {
+          "x": 568,
+          "y": 132.8
+        }
+      },
+      "94975bda-a999-4934-9488-26877854d444": {
+        "position": {
+          "x": 205.6,
+          "y": 93.6
+        }
+      }
+    },
+    "Annotations": [],
+    "name": "testflowforterraform-2",
+    "description": "",
+    "type": "contactFlow",
+    "status": "published",
+    "hash": {}
+  },
+  "Actions": [
+    {
+      "Parameters": {},
+      "Identifier": "6ab6b2e7-a051-4418-b6aa-b1cf7fc70be3",
+      "Type": "DisconnectParticipant",
+      "Transitions": {}
+    },
+    {
+      "Parameters": {
+        "Text": "Hi, this is a test flow for terraform"
+      },
+      "Identifier": "94975bda-a999-4934-9488-26877854d444",
+      "Type": "MessageParticipant",
+      "Transitions": {
+        "NextAction": "6ab6b2e7-a051-4418-b6aa-b1cf7fc70be3",
+        "Errors": [
+          {
+            "NextAction": "6ab6b2e7-a051-4418-b6aa-b1cf7fc70be3",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    }
+  ]
+}

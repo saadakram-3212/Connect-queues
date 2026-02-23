@@ -158,3 +158,21 @@ module "connect_phone_numbers" {
     }
   ]
 }
+
+module "connect_contact_flows" {
+  for_each = { for cf in var.contact_flows : cf.name => cf }
+  source   = "./modules/contact_flows"
+
+  instance_id       = each.value.instance_id
+  contact_flow_tags = each.value.contact_flow_tags
+
+  contact_flows = {
+    (each.value.name) = {
+      filename     = each.value.filename
+      content_hash = filemd5(each.value.filename)
+      description  = each.value.description
+      type         = each.value.type
+      tags         = each.value.tags
+    }
+  }
+}

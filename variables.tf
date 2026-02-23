@@ -122,3 +122,16 @@ variable "phone_numbers" {
   default = []
 }
 
+variable "contact_flows" {
+  description = "List of Amazon Connect Contact Flow configurations."
+  type = list(object({
+    name              = string
+    instance_id       = string
+    contact_flow_tags = optional(map(string), {})
+    description       = optional(string, null)
+    filename          = string
+    type              = optional(string, null)
+    tags              = optional(map(string), {})
+  }))
+  default = []
+}
