@@ -649,9 +649,6 @@ contact_flows = [
     type        = "CONTACT_FLOW"
     description = "Basic inbound contact flow"
     filename    = "./flows/test_flow.json"
-    tags = {
-      Team = "support"
-    }
   }
 ]
 
@@ -666,8 +663,5 @@ contact_flow_modules = [
     }
     description = "Test module created from Terraform"
     filename    = "./flow_modules/test_module.json"
-    tags = {
-      Team = "support"
-    }
   }
 ]

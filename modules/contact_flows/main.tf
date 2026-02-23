@@ -16,7 +16,6 @@ resource "aws_connect_contact_flow" "this" {
 
   # tags
   tags = merge(
-    { Name = each.key },
     var.contact_flow_tags,
   )
 }

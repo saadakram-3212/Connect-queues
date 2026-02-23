@@ -172,7 +172,6 @@ module "connect_contact_flows" {
       content_hash = filemd5(each.value.filename)
       description  = each.value.description
       type         = each.value.type
-      tags         = each.value.tags
     }
   }
 }
@@ -189,7 +188,6 @@ module "connect_contact_flow_modules" {
       filename     = each.value.filename
       content_hash = filemd5(each.value.filename)
       description  = each.value.description
-      tags         = each.value.tags
     }
   }
 }

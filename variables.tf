@@ -131,7 +131,6 @@ variable "contact_flows" {
     description       = optional(string, null)
     filename          = string
     type              = optional(string, null)
-    tags              = optional(map(string), {})
   }))
   default = []
 }
@@ -145,7 +144,6 @@ variable "contact_flow_modules" {
     contact_flow_module_tags = optional(map(string), {})
     description             = optional(string, null)
     filename                = string
-    tags                    = optional(map(string), {})
   }))
   default = []
 }
