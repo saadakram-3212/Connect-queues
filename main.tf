@@ -119,18 +119,15 @@ module "connect_quick_connect" {
       quick_connect_config = {
         quick_connect_type = each.value.quick_connect_config.quick_connect_type
 
-        # Only include phone_config if it's not null and has required values
         phone_config = each.value.quick_connect_config.phone_config != null ? {
           phone_number = local.all_phone_number_values[each.value.quick_connect_config.phone_config.phone_number_name]
         } : null
 
-        # Only include queue_config if it's not null and has required values
         queue_config = each.value.quick_connect_config.queue_config != null ? {
           contact_flow_id = each.value.quick_connect_config.queue_config.contact_flow_id
           queue_id        = local.all_queue_ids[each.value.quick_connect_config.queue_config.queue_name]
         } : null
 
-        # Only include user_config if it's not null and has required values
         user_config = each.value.quick_connect_config.user_config != null ? {
           contact_flow_id = each.value.quick_connect_config.user_config.contact_flow_id
           user_id         = local.all_user_ids[each.value.quick_connect_config.user_config.user_name]
