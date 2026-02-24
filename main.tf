@@ -1,4 +1,3 @@
-# root main.tf
 
 locals {
   connect_queues = { for idx, q in var.connect_queues : idx => q }
@@ -25,6 +24,23 @@ locals {
 
   all_phone_number_values = merge([
     for k, m in module.connect_phone_numbers : m.phone_number_values
+  ]...)
+
+  all_contact_flow_ids = merge([
+    for k, m in module.connect_contact_flows : m.contact_flow_ids
+  ]...)
+
+  all_contact_flow_arns = merge([
+    for k, m in module.connect_contact_flows : m.contact_flow_arns
+  ]...)
+
+
+  all_contact_flow_module_ids = merge([
+    for k, m in module.connect_contact_flow_modules : m.contact_flow_module_ids
+  ]...)
+
+  all_contact_flow_module_arns = merge([
+    for k, m in module.connect_contact_flow_modules : m.contact_flow_module_arns
   ]...)
 }
 
