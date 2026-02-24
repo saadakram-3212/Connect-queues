@@ -144,12 +144,12 @@ module "connect_quick_connect" {
         } : null
 
         queue_config = each.value.quick_connect_config.queue_config != null ? {
-          contact_flow_id = each.value.quick_connect_config.queue_config.contact_flow_id
+          contact_flow_id = local.all_contact_flow_ids[each.value.quick_connect_config.queue_config.contact_flow_id]
           queue_id        = local.all_queue_ids[each.value.quick_connect_config.queue_config.queue_name]
         } : null
 
         user_config = each.value.quick_connect_config.user_config != null ? {
-          contact_flow_id = each.value.quick_connect_config.user_config.contact_flow_id
+          contact_flow_id = local.all_contact_flow_ids[each.value.quick_connect_config.user_config.contact_flow_id]
           user_id         = local.all_user_ids[each.value.quick_connect_config.user_config.user_name]
         } : null
       }
