@@ -649,6 +649,17 @@ contact_flows = [
     type        = "CONTACT_FLOW"
     description = "Basic inbound contact flow"
     filename    = "./flows/test_flow.json"
+  },
+  {
+    name              = "tranfertoqueue-2"
+    instance_id       = "b8a0bb47-005c-4c4a-9c54-1b1937ed2613"
+    contact_flow_tags = {
+      Environment = "dev"
+      ManagedBy   = "terraform"
+    }
+    type        = "QUEUE_TRANSFER"
+    description = "Basic queue transfer flow"
+    filename    = "./flows/tranfertoqueue.json"
   }
 ]
 
