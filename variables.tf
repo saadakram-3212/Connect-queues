@@ -20,19 +20,19 @@ variable "connect_queues" {
 variable "routing_profiles" {
   description = "List of routing profile configurations."
   type = list(object({
-    name                      = string
-    instance_id               = string
-    routing_profile_tags      = optional(map(string), {})
+    name                        = string
+    instance_id                 = string
+    routing_profile_tags        = optional(map(string), {})
     default_outbound_queue_name = string
-    description               = string
+    description                 = string
     media_concurrencies = list(object({
       channel     = string
       concurrency = number
     }))
     queue_configs = optional(list(object({
-      channel  = string
-      delay    = number
-      priority = number
+      channel    = string
+      delay      = number
+      priority   = number
       queue_name = string
     })), [])
   }))
@@ -56,11 +56,11 @@ variable "security_profiles" {
 variable "users" {
   description = "List of Amazon Connect user configurations."
   type = list(object({
-    name                = string
-    instance_id         = string
-    user_tags           = optional(map(string), {})
-    directory_user_id   = optional(string, null)
-    hierarchy_group_id  = optional(string, null)
+    name               = string
+    instance_id        = string
+    user_tags          = optional(map(string), {})
+    directory_user_id  = optional(string, null)
+    hierarchy_group_id = optional(string, null)
     identity_info = optional(object({
       email      = optional(string, null)
       first_name = optional(string, null)
@@ -73,7 +73,7 @@ variable "users" {
       auto_accept                   = optional(bool, false)
       desk_phone_number             = optional(string, null)
     })
-    routing_profile_name  = string
+    routing_profile_name   = string
     security_profile_names = list(string)
   }))
   default = []
@@ -89,7 +89,7 @@ variable "quick_connects" {
     quick_connect_config = object({
       quick_connect_type = string
       phone_config = optional(object({
-            phone_number_name = string
+        phone_number_name = string
       }), null)
       queue_config = optional(object({
         contact_flow_id = string
@@ -139,11 +139,11 @@ variable "contact_flows" {
 variable "contact_flow_modules" {
   description = "List of Amazon Connect Contact Flow Module configurations."
   type = list(object({
-    name                    = string
-    instance_id             = string
+    name                     = string
+    instance_id              = string
     contact_flow_module_tags = optional(map(string), {})
-    description             = optional(string, null)
-    filename                = string
+    description              = optional(string, null)
+    filename                 = string
   }))
   default = []
 }

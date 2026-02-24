@@ -2,7 +2,7 @@
 locals {
   connect_queues = { for idx, q in var.connect_queues : idx => q }
 
-    all_queue_ids = merge([
+  all_queue_ids = merge([
     for k, m in module.connect_queues : m.queue_ids
   ]...)
 
@@ -14,11 +14,11 @@ locals {
     for k, m in module.connect_security_profile : m.security_profile_ids
   ]...)
 
-    all_user_ids = {
+  all_user_ids = {
     for k, m in module.connect_users : k => m.user_ids[k]
   }
 
-    all_phone_number_ids = merge([
+  all_phone_number_ids = merge([
     for k, m in module.connect_phone_numbers : m.phone_number_ids
   ]...)
 

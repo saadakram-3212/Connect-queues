@@ -55,16 +55,16 @@ output "queues" {
   description = "Map of queue names to their complete details"
   value = {
     for k, q in aws_connect_queue.this : k => {
-      id                    = q.queue_id
-      arn                   = q.arn
-      name                  = q.name
-      description           = q.description
-      hours_of_operation_id = q.hours_of_operation_id
-      max_contacts          = q.max_contacts
-      status                = q.status
+      id                     = q.queue_id
+      arn                    = q.arn
+      name                   = q.name
+      description            = q.description
+      hours_of_operation_id  = q.hours_of_operation_id
+      max_contacts           = q.max_contacts
+      status                 = q.status
       outbound_caller_config = try(q.outbound_caller_config[0], null)
-      quick_connect_ids     = q.quick_connect_ids
-      tags                  = q.tags_all
+      quick_connect_ids      = q.quick_connect_ids
+      tags                   = q.tags_all
     }
   }
 }

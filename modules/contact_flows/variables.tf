@@ -29,6 +29,6 @@ variable "contact_flow_tags" {
 }
 
 variable "instance_id" {
-    type        = string
-    default     = null
- }
+  type    = string
+  default = null
+}

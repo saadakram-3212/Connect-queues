@@ -70,6 +70,6 @@ resource "aws_connect_queue" "this" {
     var.queue_tags,
     try(each.value.tags, {})
   )
-  depends_on = [ aws_connect_hours_of_operation.this ]
+  depends_on = [aws_connect_hours_of_operation.this]
 }
 
