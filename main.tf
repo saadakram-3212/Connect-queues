@@ -26,6 +26,10 @@ locals {
     for k, m in module.connect_phone_numbers : m.phone_number_values
   ]...)
 
+  all_quick_connect_ids = merge([
+    for k, m in module.connect_quick_connect : m.quick_connect_ids
+  ]...)
+
   all_contact_flow_ids = merge([
     for k, m in module.connect_contact_flows : m.contact_flow_ids
   ]...)
