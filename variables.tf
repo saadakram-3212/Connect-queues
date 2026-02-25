@@ -147,3 +147,16 @@ variable "contact_flow_modules" {
   }))
   default = []
 }
+
+variable "prompts" {
+  description = "List of Amazon Connect Prompt configurations."
+  type = list(object({
+    name               = string
+    instance_arn        = string
+    prompt_tags        = optional(map(string), {})
+    description        = optional(string, null)
+    s3_bucket          = string
+    s3_key             = string
+  }))
+  default = []
+}

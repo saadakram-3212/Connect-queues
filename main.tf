@@ -211,3 +211,14 @@ module "connect_contact_flow_modules" {
     }
   }
 }
+
+module "connect_prompts" {
+  for_each = { for p in var.prompts : p.name => p }
+  source   = "./modules/prompts"
+
+  instance_arn    = each.value.instance_arn
+  prompt_name     = each.value.name
+  prompt_description = each.value.description
+  s3_bucket       = each.value.s3_bucket
+  s3_key          = each.value.s3_key
+}

@@ -609,34 +609,34 @@ users = [
 ]
 
 
-phone_numbers = [
-  {
-    name        = "US-DID-any"
-    instance_id = "arn:aws:connect:us-east-1:387867038403:instance/b8a0bb47-005c-4c4a-9c54-1b1937ed2613"
-    phone_number_tags = {
-      Environment = "dev"
-      ManagedBy   = "terraform"
-    }
-    country_code = "US"
-    type         = "DID"
-    description  = "Main support line"
-    #prefix       = "+1206"
-    region = "us-east-1"
-  }
-]
+# phone_numbers = [
+#   {
+#     name        = "US-DID-any"
+#     instance_id = "arn:aws:connect:us-east-1:387867038403:instance/b8a0bb47-005c-4c4a-9c54-1b1937ed2613"
+#     phone_number_tags = {
+#       Environment = "dev"
+#       ManagedBy   = "terraform"
+#     }
+#     country_code = "US"
+#     type         = "DID"
+#     description  = "Main support line"
+#     #prefix       = "+1206"
+#     region = "us-east-1"
+#   }
+# ]
 
-quick_connects = [
-  {
-    name        = "external-number-qc"
-    instance_id = "b8a0bb47-005c-4c4a-9c54-1b1937ed2613"
-    quick_connect_config = {
-      quick_connect_type = "PHONE_NUMBER"
-      phone_config = {
-        phone_number_name = "US-DID-any" # matches the for_each key from phone_numbers module
-      }
-    }
-  }
-]
+# quick_connects = [
+#   {
+#     name        = "external-number-qc"
+#     instance_id = "b8a0bb47-005c-4c4a-9c54-1b1937ed2613"
+#     quick_connect_config = {
+#       quick_connect_type = "PHONE_NUMBER"
+#       phone_config = {
+#         phone_number_name = "US-DID-any" # matches the for_each key from phone_numbers module
+#       }
+#     }
+#   }
+# ]
 
 contact_flows = [
   {
@@ -676,3 +676,16 @@ contact_flow_modules = [
     filename    = "./flow_modules/test_module.json"
   }
 ]
+
+prompts = [ {
+    name ="test-prompt-from-terraform"
+    instance_arn = "arn:aws:connect:us-east-1:387867038403:instance/b8a0bb47-005c-4c4a-9c54-1b1937ed2613"
+    prompt_description = "Test prompt created from Terraform"
+    s3_bucket = "connect-prompts-38403"
+    s3_key = "d8271636-e56d-4e0f-878a-42a0e6eb9cec_59a8a4f8-13c3-4307-93f4-8d1bb40e4474.wav"
+    prompt_tags = {
+      Environment = "dev"
+      ManagedBy   = "terraform"
+    }
+    
+} ]
